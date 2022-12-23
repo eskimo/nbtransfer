@@ -9,7 +9,7 @@
 
 	function transfer($name) {
 		$data = [
-			"address" => $GLOBALS["address"]
+			"address" => $GLOBALS["hnsAddress"]
 		];
 		$result = request(true, "https://namebase.io/api/domains/".$name."/transfer", $data);
 		if (@$result["success"]) {
