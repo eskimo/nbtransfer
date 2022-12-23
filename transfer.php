@@ -31,7 +31,7 @@
 		if (@$GLOBALS["2faSecret"]) {
 			$headers[] = "x-totp-tokens: ".otp();
 		}
-		
+
 		$cookies = "namebase-main=".@$GLOBALS["namebaseCookie"].";";
 
 		$curl = curl_init($url);
@@ -59,7 +59,7 @@
 		$i = 0;
 
 		again:
-		$result = request(false, "https://www.namebase.io/api/user/domains/not-listed/".$i."?limit=100");
+		$result = request(false, "https://www.namebase.io/api/user/domains/".$GLOBALS["type"]."/".$i."?limit=100");
 
 		if (@$result["success"]) {
 			if (@$result["domains"]) {
