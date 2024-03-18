@@ -16,7 +16,7 @@
 			echo $name.": SUCCESS\n";
 		}
 		else {
-			echo $name.": FAIL\n";
+			echo $name.": FAIL - ".$result["message"]."\n";
 			die();
 		}
 	}
