@@ -79,6 +79,7 @@
 	}
 
 	function startTransfers() {
+		$GLOBALS["names"] = array_unique($GLOBALS["names"]);
 		foreach ($GLOBALS["names"] as $name) {
 			transfer($name);
 		}
