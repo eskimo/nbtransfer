@@ -14,6 +14,9 @@
 		$result = request(true, "https://namebase.io/api/domains/".$name."/transfer", $data);
 		if (@$result["success"]) {
 			echo $name.": SUCCESS\n";
+
+			$index = array_search($name, $GLOBALS["names"]);
+			unset($GLOBALS["names"][$index]);
 		}
 		else {
 			echo $name.": FAIL - ".$result["message"]."\n";
@@ -60,22 +63,21 @@
 
 		again:
 		$result = request(false, "https://www.namebase.io/api/user/domains/".$GLOBALS["type"]."/".$i."?limit=100");
+		//var_dump($result);
 
 		if (@$result["success"]) {
 			if (@$result["domains"]) {
 				foreach ($result["domains"] as $key => $info) {
 					$GLOBALS["names"][] = $info["name"];
 				}
-				$i += 100;
-				goto again;
 			}
 			else {
-				startTransfers();
+				die("Finished\n");
 			}
 		}
-		else {
-			echo "Error fetching names. Your cookies are probably wrong.\n";
-		}
+
+		startTransfers();
+		goto again;
 	}
 
 	function startTransfers() {
