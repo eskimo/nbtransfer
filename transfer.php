@@ -75,6 +75,9 @@
 				die("Finished\n");
 			}
 		}
+		else {
+			die("Failure, your namebase-main cookie is probably wrong\n");
+		}
 
 		startTransfers();
 		goto again;
